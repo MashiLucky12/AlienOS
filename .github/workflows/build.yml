@@ -575,22 +575,7 @@ jobs:
             done
             log_sum '```'
 
-            echo "digest=${digest}" >> $GITHUB_OUTPUT
-
-      - name: Install Cosign
-        if: github.event_name != 'pull_request'
-        uses: sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6 # v4.1.2
-        with:
-          cosign-release: "v3.1.3"
-
-      - name: Sign container image
-        if: github.event_name != 'pull_request'
-        run: |
-          cosign sign -y --key env://COSIGN_PRIVATE_KEY \
-            --new-bundle-format=false --use-signing-config=false \
-            ${{ steps.base.outputs.output_image }}@${{ steps.push.outputs.digest }}
-        env:
-          COSIGN_PRIVATE_KEY: ${{ secrets.SIGNING_SECRET }}
+            echo "digest=${digest}" >> $GITHUB_OUT
 
       - name: Install ORAS
         if: github.event_name != 'pull_request'
