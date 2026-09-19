@@ -18,8 +18,7 @@ on:
       - ".github/workflows/build_iso*.yml"
   push:
     branches:
-      - testing
-      - unstable
+      - main
     paths-ignore:
       - "**.md"
       - "**.txt"
