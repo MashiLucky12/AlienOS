@@ -1,34 +1,21 @@
-name: Build alienos
+ name: Build alienos
 on:
   schedule:
     - cron: "40 4 * * 1"
   push:
     branches:
       - main
+    paths-ignore:
+      - "**.md"
+      - "spec_files/**"
   pull_request:
     branches:
       - testing
       - unstable
-  workflow_dispatch:
     paths-ignore:
       - "**.md"
-      - "**.txt"
-      - "installer/**"
-      - "repo_content/**"
       - "spec_files/**"
-      - "post_install_files/**"
-      - "press_kit/**"
-      - "docs/**"
-      - ".github/workflows/build_iso*.yml"
-  push:
-    branches:
-      - testing
-      - unstable
-    paths-ignore:
-      - "**.md"
-      - "**.txt"
-      - "repo_content/**"
-      - "spec_files/**"
+  workflow_dispatch: 
       - "post_install_files/**"
       - "press_kit/**"
       - ".github/workflows/build_iso*.yml"
